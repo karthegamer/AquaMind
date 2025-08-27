@@ -38,7 +38,7 @@ QUALITY_CLASSIFICATIONS = {
         'label': 'SAFE',
         'emoji': '✅',
         'message': 'Water is SAFE to use.',
-        'description': 'All parameters are within safe ranges for consumption and use.'
+        'description': 'All parameters are within safe ranges for farming and suitable for aquatic life.'
     },
     1: {
         'label': 'CAUTIONARY', 
@@ -50,9 +50,10 @@ QUALITY_CLASSIFICATIONS = {
         'label': 'UNSAFE',
         'emoji': '🔴', 
         'message': 'Water is UNSAFE!',
-        'description': 'Critical contamination levels detected. Do NOT use this water for drinking or cooking.'
+        'description': 'Critical contamination levels detected. Do NOT use this water for farming or for aquatic life.'
     }
 }
+
 
 # Application metadata
 APP_INFO = {
@@ -62,3 +63,4 @@ APP_INFO = {
     'description': 'AI-powered water quality analysis tool',
     'emoji': '🧪'
 }
+
