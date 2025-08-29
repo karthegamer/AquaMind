@@ -14,6 +14,7 @@ from tkinter import messagebox, scrolledtext, ttk
 from datetime import datetime
 from typing import Optional, Callable
 from water_quality_ai import WaterQualityAI, WaterQualityParameters
+from config import WINDOW_TITLE, COLORS
 
 
 class AquaMindGUI:
@@ -64,7 +65,7 @@ class AquaMindGUI:
         """
         # Main window setup
         self.root = tk.Tk()
-        self.root.title("AquaMind Water Safety Checker v1.0")
+        self.root.title(WINDOW_TITLE)
         self.root.geometry("900x700")
         self.root.resizable(True, True)
         
@@ -136,7 +137,7 @@ class AquaMindGUI:
             parent,
             text="📊 Load Dataset Averages",
             command=self._load_default_values,
-            bg="#2196F3",
+            bg=COLORS['info'],
             fg="white", 
             font=("Arial", 10),
             height=1,
@@ -198,7 +199,7 @@ class AquaMindGUI:
             parent, 
             text="🔬 Analyze Water Quality", 
             command=self._analyze_water,
-            bg="#4CAF50",
+            bg=COLORS['primary'],
             fg="white",
             font=("Arial", 12, "bold"),
             height=2,
@@ -211,7 +212,7 @@ class AquaMindGUI:
             parent, 
             text="🧹 Clear All Fields", 
             command=self._clear_all_fields,
-            bg="#f44336",
+            bg=COLORS['danger'],
             fg="white",
             font=("Arial", 10),
             height=1,
@@ -249,7 +250,7 @@ class AquaMindGUI:
             width=50,
             height=30,
             font=("Consolas", 9),
-            bg="#f8f8f8",
+            bg=COLORS['background'],
             fg="black",
             insertbackground="blue"
         )
@@ -260,7 +261,7 @@ class AquaMindGUI:
             right_frame,
             text="🗑️ Clear Output",
             command=self._clear_output,
-            bg="#ff9800",
+            bg=COLORS['warning'],
             fg="white",
             font=("Arial", 9),
             width=15
