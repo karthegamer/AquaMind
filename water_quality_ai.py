@@ -17,6 +17,7 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import os
 from typing import Tuple, List, Optional, Callable
 from dataclasses import dataclass, field
+from config import QUALITY_CLASSIFICATIONS
 
 
 @dataclass
@@ -93,20 +94,24 @@ class WaterQualityParameters:
             }
             
             # Calculate averages
+            # Filter rows where Water Quality == 1
+            filtered_data = data[data['Water Quality'] == 1]
+            filtered_features = filtered_data.drop('Water Quality', axis=1, errors='ignore')
+
             averages = {}
-            for col in features.columns:
+            for col in filtered_features.columns:
                 # Find matching parameter name
                 param_name = None
                 for dataset_col, param_col in column_mapping.items():
                     if dataset_col.lower() in col.lower():
                         param_name = param_col
                         break
-                
+
                 if param_name:
                     # Calculate mean, handling NaN values
-                    avg_value = features[col].mean()
+                    avg_value = filtered_features[col].mean()
                     if not pd.isna(avg_value):
-                        averages[param_name] = round(avg_value, 3)
+                        averages[param_name] = round(avg_value, 2)
             
             # Create instance with calculated averages
             return cls(
@@ -203,8 +208,8 @@ class PredictionResult:
     @property
     def risk_level(self) -> str:
         """Get human-readable risk level."""
-        levels = {0: "Low Risk", 1: "Medium Risk", 2: "High Risk"}
-        return levels.get(self.prediction_class, "Unknown")
+        classification = QUALITY_CLASSIFICATIONS.get(self.prediction_class, {'label': 'Unknown'})
+        return classification['label']
 
 
 class WaterQualityAI:
@@ -366,16 +371,16 @@ class WaterQualityAI:
         prediction = self.model.predict([param_list])[0]
         probabilities = self.model.predict_proba([param_list])[0].tolist()
         
-        # Interpret results
-        if prediction == 0:
-            result = "✅ Water is SAFE to use."
-            notes = "All parameters are within safe ranges for consumption and use."
-        elif prediction == 2:
-            result = "🔴 Water is UNSAFE!"
-            notes = "Critical contamination levels detected. Do NOT use this water for drinking or cooking."
-        else:  # prediction == 1
-            result = "⚠️ Water quality is CAUTIONARY."
-            notes = "Some parameters are at borderline levels. Consider treatment before use."
+        # Get classification info from config
+        classification = QUALITY_CLASSIFICATIONS.get(prediction, {
+            'emoji': '❓',
+            'message': 'Unknown classification',
+            'description': 'Unable to classify water quality'
+        })
+        
+        # Format result message with emoji
+        result = f"{classification['emoji']} {classification['message']}"
+        notes = classification['description']
         
         return PredictionResult(
             prediction_class=prediction,
