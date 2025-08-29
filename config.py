@@ -54,13 +54,11 @@ QUALITY_CLASSIFICATIONS = {
     }
 }
 
-
 # Application metadata
 APP_INFO = {
     'name': 'AquaMind Water Quality Analyzer',
     'version': APP_VERSION,
-    'author': '[Your Name]',
+    'author': 'Karthik Ravuru',
     'description': 'AI-powered water quality analysis tool',
     'emoji': '🧪'
 }
-
