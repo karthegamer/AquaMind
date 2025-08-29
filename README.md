@@ -14,23 +14,26 @@ Water Quality AI/
 ├── Main_AI.py             # Original monolithic version (backup)
 └── README.md              # This file
 ```
-
 ## 🚀 Quick Start
 
-1. **Install Dependencies:**
+1. **Create new virtual environment**
+    - Make sure to use a .venv environment
+
+2. **Install Dependencies:**
    ```bash
    pip install pandas scikit-learn numpy tkinter
    ```
 
-2. **Run the Application:**
+3. **Run the Application:**
    ```bash
    python main.py
    ```
 
-3. **Use the Interface:**
+4. **Use the Interface:**
    - Enter water quality parameters in the left panel
    - Click "Analyze Water Quality" to get results
    - Monitor system output in the right panel
+
 
 ## 🔧 Architecture
 
