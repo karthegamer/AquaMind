@@ -4,7 +4,7 @@ Water Quality AI Core Module
 This module contains all the machine learning logic for water quality analysis.
 It handles data loading, model training, prediction, and evaluation.
 
-Author: [Your Name]
+Author: Karthik Ravuru
 Date: August 2025
 """
 
@@ -451,3 +451,4 @@ def create_water_quality_ai(data_path: str, output_callback: Optional[Callable] 
         WaterQualityAI instance
     """
     return WaterQualityAI(data_path, output_callback)
+
