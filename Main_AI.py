@@ -5,7 +5,7 @@ A machine learning application that analyzes water quality parameters to determi
 if water is safe for use. Uses Random Forest classification to predict water safety
 based on 14 different water quality measurements.
 
-Author: [Your Name]
+Author: Karthik Ravuru
 Date: August 2025
 """
 
@@ -496,4 +496,5 @@ if __name__ == "__main__":
     root.mainloop()
     
     print("AquaMind application closed. Thank you for using our water quality analyzer!")
+
 
