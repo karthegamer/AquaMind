@@ -5,7 +5,7 @@ This module contains the graphical user interface for the Water Quality Analyzer
 It provides an intuitive interface for entering water quality parameters and 
 displaying analysis results.
 
-Author: [Your Name]
+Author: Karthik Ravuru
 Date: August 2025
 """
 
@@ -392,3 +392,4 @@ def create_application(data_path: str) -> AquaMindGUI:
     app = AquaMindGUI(ai_model)
     
     return app
+
